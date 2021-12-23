@@ -15,38 +15,38 @@
 
 package exastro.Exastro_Days_Tokyo.participant_resource.controller.api.v1.form;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import lombok.Data;
+
+@Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ParticipantForm {
-
-//	セミナーID	
-	@JsonProperty("seminar_id")
+	
+	// セミナーID
 	private int seminarId;
-
-//	参加者ID
-	@JsonProperty("participant_id")
+	
+	// 参加者ID
 	private int participantId;
 	
-//	ユーザーID
-	@JsonProperty("user_id")
+	// ユーザーID
 	private String userId;
-
-//	ユーザー名
-	@JsonProperty("user_name")
+	
+	// ユーザー名
 	private String userName;
-
-//	SSO種別
-	@JsonProperty("kind_of_sso")
+	
+	// SSO種別
 	private String kindOfSso;
 	
-//	登録日時
-	@JsonProperty("registered_date")
+	// 登録日時
 	private String registeredDate;
 	
 	public ParticipantForm() {
+		
 	}
-
-//参加者登録用コンストラクタ
+	
+	// 参加者登録用コンストラクタ
 	public ParticipantForm(int seminarId, String userId, String userName, String kindOfSso, String registeredDate) {
 		this.seminarId = seminarId;
 		this.userId = userId;
@@ -55,7 +55,7 @@ public class ParticipantForm {
 		this.registeredDate = registeredDate;
 	}
 	
-//参加者登録解除用コンストラクタ
+	// 参加者登録解除用コンストラクタ
 	public ParticipantForm(int seminarId, int participantId, String userId, String userName, String kindOfSso,
 			String registeredDate) {
 		this.seminarId = seminarId;
@@ -65,53 +65,5 @@ public class ParticipantForm {
 		this.kindOfSso = kindOfSso;
 		this.registeredDate = registeredDate;
 	}
-
-	public int getSeminarId() {
-		return seminarId;
-	}
-
-	public void setSeminarId(int seminarId) {
-		this.seminarId = seminarId;
-	}
-
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public void setParticipantId(int participantId) {
-		this.participantId = participantId;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getKindOfSso() {
-		return kindOfSso;
-	}
-
-	public void setKindOfSso(String kindOfSso) {
-		this.kindOfSso = kindOfSso;
-	}
-
-	public String getRegisteredDate() {
-		return registeredDate;
-	}
-
-	public void setRegisteredDate(String registeredDate) {
-		this.registeredDate = registeredDate;
-	}	
 	
 }

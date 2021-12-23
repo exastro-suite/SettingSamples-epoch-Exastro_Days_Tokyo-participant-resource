@@ -28,12 +28,12 @@ public class AppConfig {
 	public RestTemplate restTemplate() {
 		RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
 		return restTemplateBuilder.build();
-   	}
+	}
 	
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
-	  PropertySourcesPlaceholderConfigurer config = new PropertySourcesPlaceholderConfigurer();
-	  config.setIgnoreUnresolvablePlaceholders(true);
-	  return config;
+		PropertySourcesPlaceholderConfigurer config = new PropertySourcesPlaceholderConfigurer();
+		config.setIgnoreUnresolvablePlaceholders(true);
+		return config;
 	}
 }
