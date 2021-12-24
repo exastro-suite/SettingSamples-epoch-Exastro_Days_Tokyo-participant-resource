@@ -15,8 +15,6 @@
 
 package exastro.Exastro_Days_Tokyo.participant_resource.controller.api.v1;
 
-import java.sql.Timestamp;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -62,13 +60,11 @@ public class ParticipantController{
 	public int saveParticipant(@RequestBody ParticipantForm participantForm) {
 		ParticipantDto participantDto = null;
 		try{
-			//登録日時をString型→Timestamp型へ型変換
-			Timestamp ts = Timestamp.valueOf(participantForm.getRegisteredDate());
 			
 			//FormからDtoインスタンスを作成
 			participantDto = new ParticipantDto(participantForm.getSeminarId(),
 					participantForm.getUserId(), participantForm.getUserName(), participantForm.getKindOfSso(),
-					ts);
+					participantForm.getRegisteredDate());
 			return service.saveParticipant(participantDto);
 		}
 		catch(Exception e) {

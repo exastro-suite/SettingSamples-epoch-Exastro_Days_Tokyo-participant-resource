@@ -1,6 +1,6 @@
 package exastro.Exastro_Days_Tokyo.participant_resource.service.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class ParticipantDto {
 
@@ -20,10 +20,10 @@ public class ParticipantDto {
 	private String kindOfSso;
 	
 //	登録日時
-	private Timestamp registeredDate;
+	private Date registeredDate;
 
 //参加者登録用コンストラクタ
-	public ParticipantDto(int seminarId, String userId, String userName, String kindOfSso, Timestamp registeredDate) {
+	public ParticipantDto(int seminarId, String userId, String userName, String kindOfSso, Date registeredDate) {
 		this.seminarId = seminarId;
 		this.userId = userId;
 		this.userName = userName;
@@ -33,7 +33,7 @@ public class ParticipantDto {
 	
 //参加者登録解除用コンストラクタ
 	public ParticipantDto(int seminarId, int participantId, String userId, String userName, String kindOfSso,
-			Timestamp registeredDate) {
+			Date registeredDate) {
 		this.seminarId = seminarId;
 		this.participantId = participantId;
 		this.userId = userId;
@@ -82,11 +82,11 @@ public class ParticipantDto {
 		this.kindOfSso = kindOfSso;
 	}
 
-	public Timestamp getRegisteredDate() {
+	public Date getRegisteredDate() {
 		return registeredDate;
 	}
 
-	public void setRegisteredDate(Timestamp registeredDate) {
+	public void setRegisteredDate(Date registeredDate) {
 		this.registeredDate = registeredDate;
 	}	
 	

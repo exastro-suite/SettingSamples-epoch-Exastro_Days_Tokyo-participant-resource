@@ -15,6 +15,8 @@
 
 package exastro.Exastro_Days_Tokyo.participant_resource.service;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +49,7 @@ public class ParticipantService {
 			//DtoからEntityインスタンスを作成しDBにinsert
 			participant = new Participant(participantDto.getSeminarId(),
 					participantDto.getUserId(), participantDto.getUserName(), participantDto.getKindOfSso(),
-					participantDto.getRegisteredDate());
+					new Timestamp(participantDto.getRegisteredDate().getTime()));
 			repository.save(participant);
 			//登録した参加者の参加者IDを取得しリターン
 			Participant target = repository.findByUserIdAndKindOfSsoIs(participantDto.getUserId(), participantDto.getKindOfSso());

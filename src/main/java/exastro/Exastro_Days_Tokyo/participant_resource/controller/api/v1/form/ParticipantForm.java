@@ -15,6 +15,9 @@
 
 package exastro.Exastro_Days_Tokyo.participant_resource.controller.api.v1.form;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -40,14 +43,15 @@ public class ParticipantForm {
 	private String kindOfSso;
 	
 	// 登録日時
-	private String registeredDate;
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+	private Date registeredDate;
 	
 	public ParticipantForm() {
 		
 	}
 	
 	// 参加者登録用コンストラクタ
-	public ParticipantForm(int seminarId, String userId, String userName, String kindOfSso, String registeredDate) {
+	public ParticipantForm(int seminarId, String userId, String userName, String kindOfSso, Date registeredDate) {
 		this.seminarId = seminarId;
 		this.userId = userId;
 		this.userName = userName;
@@ -57,7 +61,7 @@ public class ParticipantForm {
 	
 	// 参加者登録解除用コンストラクタ
 	public ParticipantForm(int seminarId, int participantId, String userId, String userName, String kindOfSso,
-			String registeredDate) {
+			Date registeredDate) {
 		this.seminarId = seminarId;
 		this.participantId = participantId;
 		this.userId = userId;
