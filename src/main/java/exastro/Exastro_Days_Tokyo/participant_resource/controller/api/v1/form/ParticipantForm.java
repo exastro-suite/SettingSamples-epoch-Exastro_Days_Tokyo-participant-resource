@@ -21,9 +21,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ParticipantForm {
 	
@@ -46,9 +50,9 @@ public class ParticipantForm {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
 	private Date registeredDate;
 	
-	public ParticipantForm() {
-		
-	}
+	// 論削フラグ
+	private boolean deleteFlag;
+	
 	
 	// 参加者登録用コンストラクタ
 	public ParticipantForm(int seminarId, String userId, String userName, String kindOfSso, Date registeredDate) {

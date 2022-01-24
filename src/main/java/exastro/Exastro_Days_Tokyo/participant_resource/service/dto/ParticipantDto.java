@@ -2,25 +2,35 @@ package exastro.Exastro_Days_Tokyo.participant_resource.service.dto;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ParticipantDto {
 
-//	セミナーID	
+	// セミナーID	
 	private int seminarId;
 
-//	参加者ID
+	// 参加者ID
 	private int participantId;
 	
-//	ユーザーID
+	// ユーザーID
 	private String userId;
 
-//	ユーザー名	
+	// ユーザー名	
 	private String userName;
 
-//	SSO種別
+	// SSO種別
 	private String kindOfSso;
 	
-//	登録日時
+	// 登録日時
 	private Date registeredDate;
+	
+	// 論削フラグ
+	private boolean deleteFlag;
 
 //参加者登録用コンストラクタ
 	public ParticipantDto(int seminarId, String userId, String userName, String kindOfSso, Date registeredDate) {
@@ -41,53 +51,5 @@ public class ParticipantDto {
 		this.kindOfSso = kindOfSso;
 		this.registeredDate = registeredDate;
 	}
-
-	public int getSeminarId() {
-		return seminarId;
-	}
-
-	public void setSeminarId(int seminarId) {
-		this.seminarId = seminarId;
-	}
-
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public void setParticipantId(int participantId) {
-		this.participantId = participantId;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getKindOfSso() {
-		return kindOfSso;
-	}
-
-	public void setKindOfSso(String kindOfSso) {
-		this.kindOfSso = kindOfSso;
-	}
-
-	public Date getRegisteredDate() {
-		return registeredDate;
-	}
-
-	public void setRegisteredDate(Date registeredDate) {
-		this.registeredDate = registeredDate;
-	}	
 	
 }

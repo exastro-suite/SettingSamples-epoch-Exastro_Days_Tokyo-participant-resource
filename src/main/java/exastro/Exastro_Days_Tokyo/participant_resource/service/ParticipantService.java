@@ -15,62 +15,21 @@
 
 package exastro.Exastro_Days_Tokyo.participant_resource.service;
 
-import java.sql.Timestamp;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import exastro.Exastro_Days_Tokyo.participant_resource.repository.ParticipantRepository;
-import exastro.Exastro_Days_Tokyo.participant_resource.repository.entity.Participant;
 import exastro.Exastro_Days_Tokyo.participant_resource.service.dto.ParticipantDto;
 
 @Service
-public class ParticipantService {
+public interface ParticipantService {
+
+	public long countParticipant(int seminarId);
 	
-	@Autowired
-	protected ParticipantRepository repository;
+	public List<ParticipantDto> getParticipant(String userId, String kindOfSso);
 	
-	//セミナー参加人数確認
-	public long countParticipant(int seminarId) {
-		try{
-			//セミナー参加人数を取得しリターン
-			long count = repository.countBySeminarIdAndDeleteFlagFalse(seminarId);
-			return count;
-		}
-		catch(Exception e) {
-			throw e;
-		}	
-	}
+	public void saveParticipant(ParticipantDto participantDto);
 	
-	//参加者登録
-	public int saveParticipant(ParticipantDto participantDto) {
-		Participant participant = null;
-		try {
-			//DtoからEntityインスタンスを作成しDBにinsert
-			participant = new Participant(participantDto.getSeminarId(),
-					participantDto.getUserId(), participantDto.getUserName(), participantDto.getKindOfSso(),
-					new Timestamp(participantDto.getRegisteredDate().getTime()));
-			repository.save(participant);
-			//登録した参加者の参加者IDを取得しリターン
-			Participant target = repository.findByUserIdAndKindOfSsoIs(participantDto.getUserId(), participantDto.getKindOfSso());
-			return target.getParticipantId();
-		}
-		catch(Exception e) {
-			throw e;
-		}
-	}
-	
-	//参加者登録解除
-	public void deleteParticipant(int participantId) {
-		try {
-			//参加者の論削フラグを立てDBをupdate
-			Participant target = repository.findByParticipantIdIs(participantId);
-			target.setDeleteFlag(true);
-			repository.save(target);
-		}
-		catch(Exception e) {
-			throw e;
-		}
-	}
-	
+	public void deleteParticipant(String userId, String kindOfSso, int seminarId);
+
 }

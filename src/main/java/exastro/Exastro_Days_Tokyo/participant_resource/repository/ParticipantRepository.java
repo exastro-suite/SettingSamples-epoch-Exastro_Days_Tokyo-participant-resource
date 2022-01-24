@@ -15,6 +15,8 @@
 
 package exastro.Exastro_Days_Tokyo.participant_resource.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -23,13 +25,13 @@ import exastro.Exastro_Days_Tokyo.participant_resource.repository.entity.Partici
 @Repository
 public interface ParticipantRepository extends JpaRepository<Participant, String> {
 	
-	//登録した参加者を取得
-	Participant findByUserIdAndKindOfSsoIs(String userId, String kindOfSso);
-	
-	//参加者を取得
-	Participant findByParticipantIdIs(int participantId);
-	
 	//セミナー参加人数を取得
 	long countBySeminarIdAndDeleteFlagFalse(int seminarId);
+	
+	//申込済みのセミナーIdを取得
+	List<Participant> findByDeleteFlagFalseAndUserIdAndKindOfSsoIs(String userId, String kindOfSso);
+	
+	//参加者を取得
+	Participant findByDeleteFlagFalseAndUserIdAndKindOfSsoAndSeminarIdIs(String userId, String kindOfSso, int seminarId);
 	
 }

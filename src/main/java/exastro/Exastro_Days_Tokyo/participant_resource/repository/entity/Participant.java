@@ -22,11 +22,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * The persistent class for the participants database table.
  * 
  */
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="participants")
 public class Participant {
 	
@@ -51,9 +58,6 @@ public class Participant {
 	
 	@Column(name="delete_flag")
 	private boolean deleteFlag;
-	//コンストラクタ
-	public Participant() {
-	}
 	
 	//参加者登録用コンストラクタ
 	public Participant(int seminarId, String userId, String userName, String kindOfSso,
@@ -76,62 +80,6 @@ public class Participant {
 		this.kindOfSso = kindOfSso;
 		this.registeredDate = registeredDate;
 		this.deleteFlag = false;
-	}
-
-	public int getSeminarId() {
-		return seminarId;
-	}
-
-	public void setSeminarId(int seminarId) {
-		this.seminarId = seminarId;
-	}
-
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public void setParticipantId(int participantId) {
-		this.participantId = participantId;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getKindOfSso() {
-		return kindOfSso;
-	}
-
-	public void setKindOfSso(String kindOfSso) {
-		this.kindOfSso = kindOfSso;
-	}
-
-	public Timestamp getRegisteredDate() {
-		return registeredDate;
-	}
-
-	public void setRegisteredDate(Timestamp registeredDate) {
-		this.registeredDate = registeredDate;
-	}
-
-	public boolean isDeleteFlag() {
-		return deleteFlag;
-	}
-
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
 	}
 	
 }
