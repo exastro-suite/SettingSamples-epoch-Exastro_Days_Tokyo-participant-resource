@@ -43,10 +43,10 @@ public class ParticipantController extends BaseParticipantController{
 	public long getParticipant(@RequestParam ("seminar_id") int seminarId) {
 		
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
-		
+		Long count = null;	
 		try{
 			//セミナー参加人数を取得しリターン
-			long count = service.countParticipant(seminarId);
+			count = service.countParticipant(seminarId);
 			return count;
 		}
 		catch(Exception e) {

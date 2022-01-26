@@ -40,15 +40,16 @@ public class ParticipantUserService extends BaseParticipantService implements Pa
 	public long countParticipant(int seminarId) {
 		
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		Long count = null;
 		
 		try{
 			//セミナー参加人数を取得しリターン
-			long count = repository.countBySeminarIdAndDeleteFlagFalse(seminarId);
+			count = repository.countBySeminarIdAndDeleteFlagFalse(seminarId);
 			return count;
 		}
 		catch(Exception e) {
 			throw e;
-		}	
+		}
 	}
 	
 	//申込済みセミナー確認
