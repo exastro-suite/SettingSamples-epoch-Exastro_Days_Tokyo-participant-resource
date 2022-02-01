@@ -26,7 +26,7 @@ import exastro.Exastro_Days_Tokyo.participant_resource.repository.entity.Partici
 public interface ParticipantRepository extends JpaRepository<Participant, String> {
 	
 	//セミナー参加人数を取得
-	long countBySeminarIdAndDeleteFlagFalse(int seminarId);
+	Integer countBySeminarIdAndDeleteFlagFalse(int seminarId);
 	
 	//申込済みのセミナーIdを取得
 	List<Participant> findByDeleteFlagFalseAndUserIdAndKindOfSsoIs(String userId, String kindOfSso);
