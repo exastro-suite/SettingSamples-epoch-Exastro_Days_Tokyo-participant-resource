@@ -60,7 +60,7 @@ public class ParticipantUserService extends BaseParticipantService implements Pa
 		List<ParticipantDto> participantList = null;
 		
 		try{
-			//申込済みのセミナーidをリターン
+			//申込済みのセミナーリストをリターン
 			participantList = repository.findByDeleteFlagFalseAndUserIdAndKindOfSsoIs(userId, kindOfSso)
 					.stream()
 					.map(p -> new ParticipantDto(p.getSeminarId(), p.getParticipantId(), p.getUserId(), p.getUserName(),
@@ -78,14 +78,19 @@ public class ParticipantUserService extends BaseParticipantService implements Pa
 		
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
+		Participant target = null;
 		Participant participant = null;
 		
 		try {
-			//DtoからEntityインスタンスを作成しDBにinsert
+			//登録済みかチェックし、登録済みでなければ登録
+			target = repository.findByDeleteFlagFalseAndUserIdAndKindOfSsoAndSeminarIdIs(participantDto.getUserId(),
+					participantDto.getKindOfSso(),participantDto.getSeminarId());
 			participant = new Participant(participantDto.getSeminarId(),
 					participantDto.getUserId(), participantDto.getUserName(), participantDto.getKindOfSso(),
 					new Timestamp(participantDto.getRegisteredDate().getTime()));
-			repository.save(participant);
+			if (target == null) {
+				repository.save(participant);	
+			}
 		}
 		catch(Exception e) {
 			throw e;

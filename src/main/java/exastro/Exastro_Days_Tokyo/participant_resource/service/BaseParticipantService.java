@@ -37,8 +37,10 @@ public abstract class BaseParticipantService {
 		try {
 			//参加者の論削フラグを立てDBをupdate
 			Participant target = repository.findByDeleteFlagFalseAndUserIdAndKindOfSsoAndSeminarIdIs(userId, kindOfSso, seminarId);
-			target.setDeleteFlag(true);
-			repository.save(target);
+			if (target != null) {
+				target.setDeleteFlag(true);
+				repository.save(target);
+			}
 		}
 		catch(Exception e) {
 			throw e;
